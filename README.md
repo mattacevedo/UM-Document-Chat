@@ -13,9 +13,13 @@ Chatbots like ChatGPT are great at talking about the knowledge that exists in th
 
 One solution - and the one used here - is based on vector embedding. Using an OpenAI model called Ada, we can get the vector embedding for a given passage of text; essentially this is a numerical representation of the *semantic meaning* of that text. These numerical representations are stored in a vector index - basically a database for numbers that also keeps the original text as metadata.
 
-When the user asks the chatbot a question, we also get the vector embedding for the question. Then, we ask the vector index to compare the embedding values of the user's question to everything in the database and send us the original text of the closest matches.
+When the user asks the chatbot a question, we also get the vector embedding for the question itself. Then, we ask the vector index to compare the embedding values of the user's question to everything in the database and send us the original text of the closest matches. In other words, we find one or more (in this app's case, it's set to five) passages of text that have the closest semantic match to the user's question. 
 
-We include that original text with the user's prompt to OpenAI GPT-4 to get the chatbot's answer.
+We include that original text as context along with the user's prompt to OpenAI GPT-4 to get the chatbot's answer.
+
+When you use the uploader page to upload and process a Word doc or PDF, the app extracts the raw texts, segments it into 750-word chunks (which includes 100-word overlaps with the chunk before and after it), and uses those chunks for the text passages in the process outlined above. The original document file isn't stored anywhere.
+
+The front end is a HTML/CSS/JS page that streams the response from GPT to the browser.
 
 # Setting Up Environment Variables
 The following need to be added as environment variables. For an Azure web app, you can do this from the Azure Portal in Configuration settings under "Application settings."
@@ -37,5 +41,18 @@ I recommend using the Azure Web App plugin from Visual Studio Code to deploy the
 # Uploading Your Source Document
 Visit `[your app URL]/uploader` to upload a Word or PDF document for processing. The app will extract the text, segment it into 750-word chunks with 100-word overlap, get vector embeddings for each chunk with OpenAI Ada, and send the vector values to the vector index. If you try to use the chatbot before uploading the source document or creating the index, it won't work.
 
-# Known Issue
+# Known Issue - Important!
 The PDF-Parse library is used to extract the text from PDF files. There's an issue with this library and importing it as an ES6 module. Their fault, not ours. If you get a runtime error relating to PDF-Parse looking for a file `./test/data/05-versions-space.pdf`, then you need to go into `node_modules/pdf-parse/index.js` and comment out lines 11-26.
+
+# Helpful Resources
+
+## Microsoft API Documentation
+* [Azure OpenAI Service REST API reference](https://learn.microsoft.com/en-us/azure/ai-services/openai/reference#chat-completions)
+* [Create or Update Cognitve Search Index (Preview REST API)](https://learn.microsoft.com/en-us/rest/api/searchservice/preview-api/create-or-update-index)
+* [Add, Update or Delete Documents (Azure Cognitive Search REST API)](https://learn.microsoft.com/en-us/rest/api/searchservice/addupdate-or-delete-documents)
+* [Quickstart: Use preview REST APIs for vector search queries](https://learn.microsoft.com/en-us/azure/search/search-get-started-vector)
+
+## Useful Instructional Guidance
+* [OpenAI Embeddings](https://platform.openai.com/docs/guides/embeddings)
+* [Chunking Strategies for LLM Applications](https://www.pinecone.io/learn/chunking-strategies/)
+* [Chunking large documents for vector search solutions in Cognitive Search](https://learn.microsoft.com/en-us/azure/search/vector-search-how-to-chunk-documents)
