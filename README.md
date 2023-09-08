@@ -1,9 +1,10 @@
 # Introduction
 
-This is a chatbot that will use the text from a Word or PDF document as an information source for conversation with a user.
+This is a chatbot that will use the text from a Word or PDF document as an information source for informational conversations with a user.
 
 To get started, you will need:
 * An Azure OpenAI resource and API key
+* Deployed GPT-4 and Ada models in Azure
 * A Microsoft Cognitive Search service
 * An Azure web app set up for Node.js
 
@@ -37,7 +38,7 @@ The following need to be added as environment variables. For an Azure web app, y
 
 While you can create a Cognitive Search index in the Azure Portal, it doesn't give you all the options to create a vector-enabled index. the `createsearchindex.mjs` file here will do it for you, creating an index that is ready to go for 1,536-dimension, OpenAI Ada-friendly index. It will use the name stored in your `INDEX_NAME` environment variable.
 
-Run `node createsearchindex.mjs` from the a terminal to create your index. If it's deployed in Azure already, you cam use web SSH console for this (accessible from the Azure Portal). 
+Run `node createsearchindex.mjs` from the terminal to create your index. If it's deployed in Azure already, you cam use web SSH console for this (accessible from the Azure Portal). 
 
 ## Uploading Your Source Document
 
