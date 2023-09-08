@@ -19,12 +19,12 @@ We include that original text with the user's prompt to OpenAI GPT-4 to get the 
 
 # Setting Up Environment Variables
 The following need to be added as environment variables. For an Azure web app, you can do this from the Azure Portal in Configuration settings under "Application settings."
-* AZURE_OPENAI_RESOURCE - the name of your Azure OpenAI resource retrieved from Azure Portal
-* OPENAI_DEPLOYMENT_NAME - the name of the deployed GPT-4 model. You can deploy models in the Azure OpenAI Studio.
-* OPENAI_API_KEY - your Azure OpenAI API retrieved from the Azure Portal (must be through Azure; a generic OpenAI key won't work)
-* COG_SEARCH_KEY - the API key of your MS Cognitive Search service retrieved from the Azure Portal
-* COG_SERVICE_NAME - the name of your MS Cognitive Search service retrieved from the Azure Portal
-* INDEX_NAME - the name of the your index in MS Cognitive Search; you will create this soon.
+* `AZURE_OPENAI_RESOURCE` - the name of your Azure OpenAI resource retrieved from Azure Portal
+* `OPENAI_DEPLOYMENT_NAME` - the name of the deployed GPT-4 model. You can deploy models in the Azure OpenAI Studio.
+* `OPENAI_API_KEY` - your Azure OpenAI API retrieved from the Azure Portal (must be through Azure; a generic OpenAI key won't work)
+* `COG_SEARCH_KEY` - the API key of your MS Cognitive Search service retrieved from the Azure Portal
+* `COG_SERVICE_NAME` - the name of your MS Cognitive Search service retrieved from the Azure Portal
+* `INDEX_NAME` - the name of the your index in MS Cognitive Search; you will create this soon.
 
 # Creating Your Vector Index in Cognitive Search
 While you can create a Cognitive Search index in the Azure Portal, it doesn't give you all the options to create a vector-enabled index. the `createsearchindex.mjs` file here will do it for you, creating an index that is ready to go for 1,536-dimension, OpenAI Ada-friendly index.
