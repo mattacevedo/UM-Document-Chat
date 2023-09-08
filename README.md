@@ -8,7 +8,7 @@ To get started, you will need:
 
 The existing system prompts assume that the chatbot will use the [University of Miami Investigator Manual](https://hsro.uresearch.miami.edu/_assets/pdf/hrp-103-investigator-manual.pdf). You can change the prompts as needed by adjusting the constants at the very top of `index.js`. For a different document or use case, you might also want to change the title and header of the page in `public/index.html`.
 
-# How This Works: A Bird's Eye View
+# How This Works
 Chatbots like ChatGPT are great at talking about the knowledge that exists in their training data, but will often fail or hallucinate when asked about specific information that they weren't trained on. How can we create a chatbot that uses our own information?
 
 One solution - and the one used here - is based on vector embedding. Using an OpenAI model called Ada, we can get the vector embedding for a given passage of text; essentially this is a numerical representation of the *semantic meaning* of that text. These numerical representations are stored in a vector index - basically a database for numbers that also keeps the original text as metadata.
@@ -17,9 +17,32 @@ When the user asks the chatbot a question, we also get the vector embedding for 
 
 We include that original text as context along with the user's prompt to OpenAI GPT-4 to get the chatbot's answer.
 
-When you use the uploader page to upload and process a Word doc or PDF, the app extracts the raw texts, segments it into 750-word chunks (which includes 100-word overlaps with the chunk before and after it), and uses those chunks for the text passages in the process outlined above. The original document file isn't stored anywhere.
+## Example
+Here's a simplified example. A user asks the chatbot:
 
-The front end is a HTML/CSS/JS page that streams the response from GPT to the browser.
+> How do I begin the IRB process?
+
+This sentence is sent to Ada to get its vector embedding values, and those values are compared to the values of everything in the vector search database. The database finds the closest match and sends back the corresponding original text chunk, which looks like this:
+
+> [...] This chapter describes what investigators should expect from IRB review. 5.1 Levels of IRB Review When the HSRO receives a submission, the first task is to determine whether the proposed project is, indeed, human subject research. If the IRB determines that it meets the definition of a human subject and research, the next task is to determine the level of review. The following are descriptions of the various levels of review available: Not Human Subject Research (HSR) Activities that do not meet the definition of “research” and/or do not include “human subjects,” as defined by regulations, are not subject to IRB oversight or review. This determination is not the same as “exempt” (see below) nor does this mean you are “IRB approved.” [...]
+
+The "user message" that is sent to GPT-4 is structured like this (although the user never sees this):
+
+> Here is some information and a question from the user. Use the information to answer the question.
+>
+> Information:
+> [...]This chapter describes what investigators should expect from IRB review. 5.1 Levels of IRB Review When the HSRO receives a submission, the first task is to determine whether the proposed project is, indeed, human subject research. If the IRB determines that it meets the definition of a human subject and research, the next task is to determine the level of review. [...]
+>
+> Question from user:
+> How do I begin the IRB process?
+
+The GPT-4 model will respond with something like this:
+> The Institutional Review Board (IRB) process at the University of Miami is thorough and involves several steps:
+>
+> 1. Determine if it is Human Subject Research (HSR): The first step is to determine whether your proposed project is considered human subject research. Activities that do not meet the definition of “research” or do not include “human subjects," are not subject to IRB oversight or review.
+> [...]
+
+Again, this is the simplified version for illustration. This app's actual guidance to the chatbot is clearer and more precise, and the top 5 semantic matches are provided as context (not just one), giving the chatbot much more text to use to generate the best answer. You can see (and adjust) the chatbot's instructions at the top of `index.js`.
 
 # Setting Up Environment Variables
 The following need to be added as environment variables. For an Azure web app, you can do this from the Azure Portal in Configuration settings under "Application settings."
