@@ -35,7 +35,7 @@ Run `node createsearchindex.mjs` from the Terminal to create your index.
 I recommend using the Azure Web App plugin from Visual Studio Code to deploy the app. Keep in mind that web apps in Azure should run on port 8080 (this app is already set up accordingly).
 
 # Uploading Your Source Document
-Either locally or in the deployed app, visit `/uploader` to upload a Word or PDF document for processing. The app will extract the text, segment it into 750-word chunks with 100-word overlap, get vector embeddings for each chunk with OpenAI Ada, and send the vector values to the vector index.
+Visit `[your app URL]/uploader` to upload a Word or PDF document for processing. The app will extract the text, segment it into 750-word chunks with 100-word overlap, get vector embeddings for each chunk with OpenAI Ada, and send the vector values to the vector index. If you try to use the chatbot before uploading the source document or creating the index, it won't work.
 
 # Known Issue
 The PDF-Parse library is used to extract the text from PDF files. There's an issue with this library and importing it as an ES6 module. Their fault, not ours. If you get a runtime error relating to PDF-Parse looking for a file `./test/data/05-versions-space.pdf`, then you need to go into `node_modules/pdf-parse/index.js` and comment out lines 11-26.
