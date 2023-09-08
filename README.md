@@ -6,7 +6,7 @@ To get started, you will need:
 * A Microsoft Cognitive Search service
 * An Azure web app set up for Node.js
 
-The existing system prompts assume that the chatbot will use the University of Miami Investigator Manual. You can change the prompts as needed by adjusting the constants at the very top of `index.js`. You might also want to change the title and header of the page in `public/index.html`.
+The existing system prompts assume that the chatbot will use the [University of Miami Investigator Manual](https://hsro.uresearch.miami.edu/_assets/pdf/hrp-103-investigator-manual.pdf). You can change the prompts as needed by adjusting the constants at the very top of `index.js`. For a different document or use case, you might also want to change the title and header of the page in `public/index.html`.
 
 # How This Works: A Bird's Eye View
 Chatbots like ChatGPT are great at talking about the knowledge that exists in their training data, but will often fail or hallucinate when asked about specific information that they weren't trained on. How can we create a chatbot that uses our own information?
