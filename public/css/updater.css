@@ -1,0 +1,134 @@
+.w-layout-blockcontainer {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+}
+
+@media screen and (max-width: 991px) {
+  .w-layout-blockcontainer {
+    max-width: 728px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .w-layout-blockcontainer {
+    max-width: none;
+  }
+}
+
+h1 {
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-family: Lato, sans-serif;
+  font-size: 38px;
+  font-weight: 700;
+  line-height: 44px;
+}
+
+.instructions {
+  width: 80%;
+  text-align: center;
+  font-family: Lato, sans-serif;
+  font-size: 16px;
+}
+
+.container {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.text-span {
+  font-family: Inconsolata, monospace;
+  font-size: 20px;
+}
+
+.entry-container {
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  border-top: solid 2px #dbdbdb;
+}
+
+.form-block {
+  width: 100%;
+}
+
+.entry-text {
+  font-family: Inconsolata, monospace;
+  display: flex;
+}
+
+.button-container {
+  grid-column-gap: 50px;
+  justify-content: center;
+  margin-top: 40px;
+  margin-bottom: 220px;
+  display: flex;
+}
+
+.label {
+  margin-top: 40px;
+  margin-bottom: 10px;
+  font-family: Lato, sans-serif;
+}
+
+.entry {
+  width: 60%;
+  grid-column-gap: 25px;
+  align-items: center;
+  display: flex;
+}
+
+.delete {
+  grid-column-gap: 3px;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.delete-text {
+  font-family: Lato, sans-serif;
+  font-size: 14px;
+}
+
+.entry-question {
+  max-width: 60vw;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.entry-text-container {
+  width: 50rem;
+}
+
+.heading {
+  margin-top: 60px;
+}
+
+@media screen and (max-width: 479px) {
+  .entry-text {
+    width: 75vw;
+  }
+
+  .label {
+    text-align: center;
+  }
+
+  .entry-question {
+    width: 75vw;
+    flex-direction: column;
+  }
+
+  .entry-text-container {
+    width: 75vw;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}

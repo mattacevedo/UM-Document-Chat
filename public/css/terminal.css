@@ -1,0 +1,130 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+/* change the variables below for other applications */
+:root {
+  --bot-color: #262626;
+  --code-color: #0b8e32;
+  --user-color: #9c9c9c;
+  --page-color: #fafafa;
+  --main-font: "Lato", sans-serif;
+  --text-size: 18px;
+}
+
+body {
+  background-color: var(--page-color);
+  font-size: var(--text-size);
+}
+
+.container {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.header {
+  font-family: var(--main-font);
+  text-align: center;
+  margin: 18px;
+}
+
+.header h1 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.header img {
+  width: 150px;
+}
+
+hr {
+  border: 1px dashed var(--bot-color);
+}
+
+.botmessage {
+  color: var(--bot-color);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: var(--main-font);
+  line-height: 1.3;
+}
+
+code,
+pre {
+  color: var(--code-color);
+  white-space: pre-wrap;
+}
+
+.usermessage {
+  color: var(--user-color);
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: var(--main-font);
+  line-height: 1.3;
+}
+
+.userinput {
+  width: 100%;
+  height: 5em;
+  position: static;
+  top: auto;
+  bottom: 0%;
+  left: 0%;
+  right: 0%;
+  font-family: var(--main-font);
+}
+
+.text-field {
+  max-width: 100%;
+  color: #ececec;
+  background-color: var(--page-color);
+  border: 1px solid #e8e8e8;
+  border-radius: 25px;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: var(--text-size);
+  font-family: var(--main-font);
+  resize: none;
+  overflow: hidden;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 15px;
+  color: #262626;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.03), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+  z-index: 9999;
+}
+
+.text-field:focus {
+  border: 1px solid #bfbfbf;
+  border-radius: 25px;
+}
+
+/* *:disabled {
+  display: none;
+}*/
+
+.form-block {
+  flex-direction: column;
+  display: flex;
+}
+
+.form {
+  display: flex;
+  align-items: end;
+}
+
+.submit-button {
+  height: 40px;
+  background-color: var(--page-color);
+  border-radius: 1px;
+  margin-right: -20px;
+  font-family: var(--main-font);
+  margin-bottom: 15px;
+  color: #262626;
+}
+
+a {
+  color: #8f9cff;
+}
+
+.chatcontainer {
+  padding: 10px;
+}
