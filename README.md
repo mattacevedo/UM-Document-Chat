@@ -15,7 +15,13 @@ The existing system prompts assume that the chatbot will use the [University of 
 
 I recommend using MS Visual Studio Code to clone this GitHub repo. Use `https://github.com/mattacevedo/UM-Document-Chat.git` as the URL or `gh repo clone mattacevedo/UM-Document-Chat` if using the CLI.
 
+Once in your IDE, run `npm install` in the terminal to add your dependencies, which will create your `node_modules` folder.
+
 Then, you can use the [Azure App Service extension](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azureappservice) in VS Code to deploy as an Azure web app.
+
+### Known Issue - Important!
+
+The PDF-Parse library is used to extract the text from PDF files. There's an issue with this library and importing it as an ES6 module. Their fault, not ours. If you get a runtime error relating to PDF-Parse looking for a file `./test/data/05-versions-space.pdf`, then you need to go into `node_modules/pdf-parse/index.js` and comment out lines 11-26.
 
 ## Setting Up Environment Variables
 
@@ -31,15 +37,11 @@ The following need to be added as environment variables. For an Azure web app, y
 
 While you can create a Cognitive Search index in the Azure Portal, it doesn't give you all the options to create a vector-enabled index. the `createsearchindex.mjs` file here will do it for you, creating an index that is ready to go for 1,536-dimension, OpenAI Ada-friendly index. It will use the name stored in your `INDEX_NAME` environment variable.
 
-Run `node createsearchindex.mjs` from the a terminal to create your index. If it's deployed in Azure already, you cam use  web SSH console for this (accessible from the Azure Portal). 
+Run `node createsearchindex.mjs` from the a terminal to create your index. If it's deployed in Azure already, you cam use web SSH console for this (accessible from the Azure Portal). 
 
 ## Uploading Your Source Document
 
 Visit `[your app URL]/uploader` to upload a Word or PDF document for processing. The app will extract the text, segment it into 750-word chunks with 100-word overlap, get vector embeddings for each chunk with OpenAI Ada, and send the vector values to the vector index. If you try to use the chatbot before uploading the source document or creating the index, it won't work.
-
-## Known Issue - Important!
-
-The PDF-Parse library is used to extract the text from PDF files. There's an issue with this library and importing it as an ES6 module. Their fault, not ours. If you get a runtime error relating to PDF-Parse looking for a file `./test/data/05-versions-space.pdf`, then you need to go into `node_modules/pdf-parse/index.js` and comment out lines 11-26.
 
 # How This Works
 
