@@ -27,12 +27,12 @@ The following need to be added as environment variables. For an Azure web app, y
 * `INDEX_NAME` - the name of the your index in MS Cognitive Search; you will create this soon.
 
 # Creating Your Vector Index in Cognitive Search
-While you can create a Cognitive Search index in the Azure Portal, it doesn't give you all the options to create a vector-enabled index. the `createsearchindex.mjs` file here will do it for you, creating an index that is ready to go for 1,536-dimension, OpenAI Ada-friendly index.
+While you can create a Cognitive Search index in the Azure Portal, it doesn't give you all the options to create a vector-enabled index. the `createsearchindex.mjs` file here will do it for you, creating an index that is ready to go for 1,536-dimension, OpenAI Ada-friendly index. It will use the name stored in your `INDEX_NAME` environment variable.
 
 Run `node createsearchindex.mjs` from the Terminal to create your index.
 
 # Deploy the App
-I recommend using the Azure Web App plugin from Visual Studio Code to deploy the app. Keep in mind that web apps in Azure should run on port 8080.
+I recommend using the Azure Web App plugin from Visual Studio Code to deploy the app. Keep in mind that web apps in Azure should run on port 8080 (this app is already set up accordingly).
 
 # Uploading Your Source Document
 Either locally or in the deployed app, visit `/uploader` to upload a Word or PDF document for processing. The app will extract the text, segment it into 750-word chunks with 100-word overlap, get vector embeddings for each chunk with OpenAI Ada, and send the vector values to the vector index.
